@@ -5,6 +5,7 @@
 
 body {
     background-color: #0b0a4f;
+    color: white;
 }
 
 .tabs {
@@ -18,9 +19,9 @@ body {
 .doco {
     background-color: #096db5;
     height: 1000px;
-    width: 88%;
-    margin-left: 6%;
-    margin-right: 6%;
+    width: 80%;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
 .line {
@@ -38,4 +39,33 @@ body {
     top: 5px;
     left: 10px;
     position: fixed;
+}
+
+.tabButton {
+    position: fixed;
+    left: 118px;
+    top: -4px;
+    font-size: 40px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-decoration: underline;
+    text-align: center;
+    width: 300px;
+}
+
+.arrow {
+    position: fixed;
+    left: 242px;
+    top: 45px;
+    background-color: transparent;
+    border: none;
+}
+
+.arrowImage {
+    filter: invert(1);
+    width: 50px;
+    height: 50px;
 }
