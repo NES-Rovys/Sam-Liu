@@ -14,11 +14,12 @@ body {
     width: 100%;
     margin-left: 0;
     position: fixed;
+    z-index: 1;
 }
 
 .doco {
     background-color: #096db5;
-    height: 1000px;
+    height: 2000px;
     width: 80%;
     margin-left: 10%;
     margin-right: 10%;
@@ -71,9 +72,11 @@ body {
 }
 
 .docVid {
-    margin-left: 45px;
+    margin-left: 40px;
     border: 4px black;
     border-radius: 8%;
+    position: relative;
+    top: -50px;
 }
 
 .docHead {
@@ -81,17 +84,14 @@ body {
     margin-right: 30px;
     font-size: 29px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    height: 1px;
+    height: 15px;
 }
 
 .docText {
-    width: 100px;
-    height: 400px;
     float: right;
     margin-right: 30px;
-    font-size: 15px;
+    font-size: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-align: left;
-    border-radius: 10px;
-    border-color: black;
+    width: 482px;
 }
