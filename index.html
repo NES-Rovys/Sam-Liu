@@ -6,22 +6,23 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
         <link rel="icon" type="image/x-icon" href="images/blue.png" />
         <link rel="stylesheet" href="style.css" />
+        <a href="tiltrush/myPWA/public/index.html"></a>
         <title>Sam Liu Official</title>
     </head>
     <body>
         <div class="tabs">
             <div class="line"></div>
             <img src="images/blue.png" class="logo">
-            <button class="tabButton">VIDEOS</button>
+            <button class="tabButton" onclick="newPage('videos')">VIDEOS</button>
             <button class="arrow"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 448px;">QUOTES</button>
+            <button class="tabButton" style="left: 448px;" onclick="newPage('quotes')">QUOTES</button>
             <button class="arrow" style="left: 576px;"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 778px;">GAMING</button>
+            <button class="tabButton" style="left: 778px;" onclick="newPage('gaming')">GAMING</button>
             <button class="arrow" style="left: 901px;"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 1090px;">SHRINE</button>
+            <button class="tabButton" style="left: 1090px;" onclick="newPage('shrine')">SHRINE</button>
             <button class="arrow" style="left: 1216px;"><img src="images/arrow.png" class="arrowImage"></button>
         </div>
-        <div class="doco">
+        <div class="doco" id="videos">
             <p style="font-size: 100px;">SAM LIU IS LORD</p>
             <p class="docHead">Sam Liu | The Official Documentary | 2022</p><br><br><br>
             <p class="docText">The grand beginning of the glorious three-part journey of Sam Liu <br>WOw</p>
@@ -34,9 +35,18 @@
             <iframe width="640px" height="360px" src="https://www.youtube.com/embed/HVpmMC3HOSE" class="docVid" style="top: -110px;"></iframe>
             <iframe width="640px" height="360px" src="https://www.youtube.com/embed/samLiuthegoat" class="docVid" style="float:right; margin-right: 40px; top: 5px;"></iframe>
             <p class="docHead" style="float:left; margin-left: 30px; font-size: 30px; height: 50px; width: 430px;">Sam Liu 3 - Coming Soon</p>
-            <p class="docText" style="float:left; margin-left: 30px; width: 430px;">Releasing 18th of a month</p>
+            <p class="docText" style="float:left; margin-left: 30px; width: 430px;">Releasing 18th of a month</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <p class="reviewHead">Reviews:</p>
         </div>
+        <div class="doco" id="quotes" style="display: none;">
 
-        <script src="script.js"></script>
+        </div>
+        <div class="doco" id="gaming" style="display: none;">
+            <div w3-include-html="tiltrush/myPWA/public/index.html"></div>
+        </div>
+        <div class="doco" id="shrine" style="display: none;">
+
+        </div>
+        <script src="script.js">includeHTML()</script>
     </body>
 </html>
