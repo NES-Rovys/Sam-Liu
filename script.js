@@ -1,4 +1,5 @@
 var page = "videos";
+includeHTML();
 
 function newPage(id) {
     document.getElementById(page).style.display = "none";
