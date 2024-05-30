@@ -4,7 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-        <link rel="icon" type="image/x-icon" href="images/blue.png" />
+        <link rel="icon" type="image/x-icon" href="images/samliudoc.png" />
         <link rel="stylesheet" href="style.css" />
         <a href="tiltrush/myPWA/public/index.html"></a>
         <title>Sam Liu Official</title>
@@ -13,14 +13,14 @@
         <div class="tabs">
             <div class="line"></div>
             <img src="images/blue.png" class="logo">
-            <button class="tabButton" onclick="newPage('videos')">VIDEOS</button>
-            <button class="arrow"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 448px;" onclick="newPage('quotes')">QUOTES</button>
-            <button class="arrow" style="left: 576px;"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 778px;" onclick="newPage('gaming')">GAMING</button>
-            <button class="arrow" style="left: 901px;"><img src="images/arrow.png" class="arrowImage"></button>
-            <button class="tabButton" style="left: 1090px;" onclick="newPage('shrine')">SHRINE</button>
-            <button class="arrow" style="left: 1216px;"><img src="images/arrow.png" class="arrowImage"></button>
+            <a class="tabButton" onclick="newPage('videos')" href="#top">VIDEOS</a>
+            <button class="arrow" id="dropVid" onclick="showMenu(id)"><img src="images/arrow.png" class="arrowImage"></button>
+            <a class="tabButton" style="left: 448px;" onclick="newPage('quotes')" href="#top">QUOTES</a>
+            <button class="arrow" style="left: 576px;" id="dropQuo" onclick="showMenu(id)"><img src="images/arrow.png" class="arrowImage"></button>
+            <a class="tabButton" style="left: 778px;" onclick="newPage('gaming')" href="#top">GAMING</button>
+            <button class="arrow" style="left: 901px;" id="dropGam" onclick="showMenu(id)"><img src="images/arrow.png" class="arrowImage"></button>
+            <a class="tabButton" style="left: 1090px;" onclick="newPage('shrine')" href="#top">SHRINE</a>
+            <button class="arrow" style="left: 1216px;" id="dropShr" onclick="showMenu(id)"><img src="images/arrow.png" class="arrowImage"></button>
         </div>
         <div class="doco" id="videos">
             <p style="font-size: 100px;">SAM LIU IS LORD</p>
@@ -37,6 +37,12 @@
             <p class="docHead" style="float:left; margin-left: 30px; font-size: 30px; height: 50px; width: 430px;">Sam Liu 3 - Coming Soon</p>
             <p class="docText" style="float:left; margin-left: 30px; width: 430px;">Releasing 18th of a month</p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
             <p class="reviewHead">Reviews:</p>
+            <button class="reviewButton">Add a review</button><br>
+            <img class="stars">
+            <p class="reviewTitle">THE BEST THING EVER</p>
+            <p class="reviewDesc">Please <br> end me</p>
+            <p class="reviewName">Jack Hunter</p>
+            <img class="reviewProfile">
         </div>
         <div class="doco" id="quotes" style="display: none;">
 
