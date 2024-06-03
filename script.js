@@ -1,4 +1,5 @@
 var page = "videos";
+var dropdown = "";
 
 function newPage(id) {
     document.getElementById(page).style.display = "none";
@@ -6,7 +7,7 @@ function newPage(id) {
     page = id;
 }
 
-function showMenu(id) {
+function showMenu(id) {;
   switch(id) {
     case "dropVid": 
       id = "downVid";
@@ -21,5 +22,9 @@ function showMenu(id) {
       id = "downShr";
       break;
   }
+  if (dropdown != "") {
+    document.getElementById(dropdown).classList.toggle("show");
+  }  
   document.getElementById(id).classList.toggle("show");
+  dropdown = id;
 }

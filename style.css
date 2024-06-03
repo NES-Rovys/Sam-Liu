@@ -1,11 +1,11 @@
 *  {
     margin: 0;
     padding: 0;
+    color: white;
 }
 
 body {
     background-color: #0b0a4f;
-    color: white;
 }
 
 .tabs {
@@ -51,7 +51,6 @@ body {
     font-weight: bold;
     background-color: transparent;
     border: none;
-    color: white;
     text-decoration: underline;
     text-align: center;
     width: 300px;
@@ -115,7 +114,6 @@ body {
     font-size: 25px;
     margin: 0 auto;
     text-align: center;
-    color: white;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     display: block;
 }
@@ -128,7 +126,6 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 18px;
     background-color: #072f85;
-    color: white;
     border-color: black;
     border-radius: 2px;
 }
@@ -144,3 +141,23 @@ body {
 .reviewName {
     margin-left: 20px;
 }
+
+.menu {
+    display: none;
+    position: absolute;
+    background-color: #072f85;
+    min-width: 70px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 2;
+    left: 178px;
+    top: 90px;
+}
+
+.menu a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.show {display:block;}
