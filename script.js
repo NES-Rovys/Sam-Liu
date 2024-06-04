@@ -39,7 +39,7 @@ function goToPage(id) {
 }
 
 window.onclick = function(event) {
-  console.log(!event.target.matches('.arrowImage'));
+  console.log(event.target);
   if (!event.target.matches('.arrowImage')) {
     for (let i = 0; i < document.querySelectorAll('.menu').length; i++) {
       if (document.querySelectorAll('.menu')[i].classList.contains('show')) {
