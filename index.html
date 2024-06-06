@@ -10,6 +10,12 @@
         <title>Sam Liu Official</title>
     </head>
     <body>
+        <div class="signin">
+            <br><p>Sign In Page</p><br>
+            <textarea class="enter" id="username" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Username</textarea><br>
+            <textarea class="enter" id="password" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Password</textarea>
+        </div>
+        <div class="blocker" id="blocker"></div>
         <div class="tabs">
             <div class="line"></div>
             <img src="images/blue.png" class="logo">
@@ -37,6 +43,7 @@
             <div id="downShr" class="menu" style="left: 1200px;">
                 <a href="#" id="Shr0" onclick="goToPage(id)">Shrine</a>
             </div>
+            <button class="pfp"><img src="images/pfp.png" class="pfpImg"></button>
         </div>
         <div class="doco" id="videos">
             <p style="position: absolute; top: -100px;" id="sl1"></p><p style="position: absolute; top: 440px;" id="slt2"></p><p style="position: absolute; top: 860px;" id="sl2"></p><p style="position: absolute; top: 1330px;" id="sl3"></p>

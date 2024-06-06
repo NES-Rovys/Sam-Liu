@@ -1,6 +1,9 @@
 var page = "videos";
 var dropdown = "";
-var dropPos = []
+var dropPos = [];
+
+document.getElementById(blocker).style.width = screen.width;
+document.getElementById(blocker).style.height = screen.height;
 
 function newPage(id) {
   document.getElementById(page).style.display = "none";

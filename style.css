@@ -162,3 +162,49 @@ body {
 }
 
 .show {display:block;}
+
+.pfp {
+    position: absolute;
+    right: 20px;
+    top: 5px;
+    background: transparent;
+    border-color: transparent;
+}
+
+.pfpImg {
+    width: 80px;
+    height: 80px;
+}
+
+.blocker {
+    width: 10000px;
+    height: 10000px;
+    background-color: black;
+    opacity: 0.4;
+    position: fixed;
+    z-index: 2;
+    display: block;
+}
+
+.signin {
+    width: 700px;
+    height: 500px;
+    position: fixed;
+    background-color: #0b0a4f;
+    top: 140px;
+    left: 420px;
+    z-index: 4;
+    display: block;
+    align-items: center;
+}
+
+.enter {
+    position: relative;
+    background-color: black;
+    color: white;
+    text-align: center;
+    align-self: center;
+    width: 250px;
+    height: 50px;
+    font-size: 25px;
+}
