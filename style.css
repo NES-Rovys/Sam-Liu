@@ -195,16 +195,32 @@ body {
     left: 420px;
     z-index: 4;
     display: block;
-    align-items: center;
 }
 
 .enter {
-    position: relative;
     background-color: black;
     color: white;
     text-align: center;
-    align-self: center;
     width: 250px;
     height: 50px;
     font-size: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.signHead {
+    text-align: center;
+    font-size: 35px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.signButton {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: black;
+    color: white;
+    width: 80px;
+    height: 30px;
 }
