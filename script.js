@@ -52,3 +52,13 @@ window.onclick = function(event) {
     }
   }
 }
+
+function signIn(on) {
+  if (on) {
+    document.getElementById("blocker").style.display = "block";
+    document.getElementById("signin").style.display = "block";
+  } else {
+    document.getElementById("blocker").style.display = "none";
+    document.getElementById("signin").style.display = "none";
+  }
+}

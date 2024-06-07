@@ -187,12 +187,12 @@ body {
 }
 
 .signin {
-    width: 700px;
-    height: 500px;
+    width: 400px;
+    height: 400px;
     position: fixed;
     background-color: #0b0a4f;
-    top: 140px;
-    left: 420px;
+    top: 170px;
+    left: 540px;
     z-index: 4;
     display: block;
 }
@@ -216,11 +216,32 @@ body {
 }
 
 .signButton {
-    margin-left: auto;
+    margin-left: 40px;
     margin-right: auto;
     display: block;
     background-color: black;
     color: white;
     width: 80px;
     height: 30px;
+}
+
+.error {
+    text-align: center;
+    font-size: 15px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.back {
+    position: fixed;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.back:active {
+    transform: scale(1.05);
+  }
+
+.backImg {
+    width: 50px;
+    height: 50px;
 }
