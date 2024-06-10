@@ -84,5 +84,55 @@
 
         </div>
         <script src="script.js"></script>
+         <!-- MDB ESSENTIAL -->
+        <script type="text/javascript" src="js/mdb.min.js"></script>
+        <!-- Google API -->
+        <script src="https://apis.google.com/js/api.js"></script>
+        <!-- easyData -->
+        <script type="text/javascript" src="js/easyData-google-sheets.js"></script>
+        <script>
+            {
+              {
+                // Your API KEY
+                const API_KEY = "AIzaSyAUWbFQCQ-aKIYj6UKo8j34Amx5OoaSAqI";
+        
+                function displayResult2(response) {
+                    getSheet(response);
+                  /*let tableHead = "";
+                  let tableBody = "";
+        
+                  response.result.values.forEach((row, index) => {
+                    if (index === 0) {
+                      tableHead += "<tr>";
+                      row.forEach((val) => (tableHead += "<th>" + val + "</th>"));
+                      tableHead += "</tr>";
+                    } else {
+                      tableBody += "<tr>";
+                      row.forEach((val) => (tableBody += "<td>" + val + "</td>"));
+                      tableBody += "</tr>";
+                    }
+                  });
+        
+                  document.getElementById("table-head").innerHTML = tableHead;
+                  document.getElementById("table-body").innerHTML = tableBody;*/
+                }
+        
+                function loadData() {
+                  // Spreadsheet ID
+                  const spreadsheetId = "1-EAIGL77kt-190kCJMSpihZirubX8VLIQF-yzBxEg8M";
+                  const range = "A:Z";
+                  getPublicValues({ spreadsheetId, range }, displayResult2);
+                }
+        
+                window.addEventListener("load", (e) => {
+                  initOAuthClient({ apiKey: API_KEY });
+                });
+        
+                document.addEventListener("gapi-loaded", (e) => {
+                  loadData();
+                });
+              }
+            }
+          </script>
     </body>
 </html>

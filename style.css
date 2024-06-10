@@ -183,7 +183,7 @@ body {
     opacity: 0.4;
     position: fixed;
     z-index: 2;
-    display: block;
+    display: none;
 }
 
 .signin {
@@ -194,7 +194,7 @@ body {
     top: 170px;
     left: 540px;
     z-index: 4;
-    display: block;
+    display: none;
 }
 
 .enter {

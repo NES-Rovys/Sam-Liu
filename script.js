@@ -62,3 +62,7 @@ function signIn(on) {
     document.getElementById("signin").style.display = "none";
   }
 }
+
+function getSheet(response) {
+  console.log(response);
+}
