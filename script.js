@@ -1,4 +1,4 @@
-var page = "videos";
+var page = "quotes";
 var dropdown = "";
 var dropPos = [];
 
