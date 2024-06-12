@@ -1,6 +1,7 @@
 var page = "quotes";
 var dropdown = "";
 var dropPos = [];
+var quotes;
 
 document.getElementById(blocker).style.width = screen.width;
 document.getElementById(blocker).style.height = screen.height;
@@ -64,5 +65,23 @@ function signIn(on) {
 }
 
 function getSheet(response) {
-  console.log(response);
+  quotes = response.result.values;
+  generateQuotes();
+}
+
+function generateQuotes() {
+  console.log(quotes);
+  var temp = '';
+  for (let i = 1; i < quotes.length; i++) {
+    temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2] + '</p>';
+    temp += '<br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
+    if (quotes[i][9] != undefined) {
+      temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
+      if (quotes[i][10] != undefined) {
+        temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
+      }
+    }
+    temp += '</div></td></tr>';
+  }
+  document.getElementById("quoteRows").innerHTML = temp;
 }
