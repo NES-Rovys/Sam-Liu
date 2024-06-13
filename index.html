@@ -11,7 +11,7 @@
     </head>
     <body>
         <div class="signin" id="signin">
-            <button class="back" onclick="signIn(false)"><img src="images/back_arrow.png" class="backImg"></button>
+            <button class="back" onclick="signInPage(false)"><img src="images/back_arrow.png" class="backImg"></button>
             <br><p class="signHead">Sign In Page</p><br>
             <textarea class="enter" id="username" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Username</textarea><br><br>
             <textarea class="enter" id="password" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Password</textarea><br>
@@ -46,7 +46,7 @@
             <div id="downShr" class="menu" style="left: 1200px;">
                 <a href="#" id="Shr0" onclick="goToPage(id)">Shrine</a>
             </div>
-            <button class="pfp" onclick="signIn(true)"><img src="images/pfp.png" class="pfpImg"></button>
+            <button class="pfp" onclick="signInPage(true)"><img src="images/pfp.png" class="pfpImg"></button>
         </div>
         <div class="doco" id="videos" style="display: none;">
             <p style="position: absolute; top: -100px;" id="sl1"></p><p style="position: absolute; top: 440px;" id="slt2"></p><p style="position: absolute; top: 860px;" id="sl2"></p><p style="position: absolute; top: 1330px;" id="sl3"></p>
@@ -75,10 +75,10 @@
           <p style="font-size: 100px;">SAM LIU IS LORD</p>
           <table class="quoteTab">
             <thead>
-              <th class="quoteHead">Temp</th>
+              <th class="quoteHead"><textarea class="search" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Search</textarea></th>
             </thead>
             <tbody id="quoteRows">
-              <tr><td class="quoteBody"><p class="quoteText">“Quote ndwaifdnhwihfaeioh”<br>- Name Lastname (description)</p><br><div style="display: flex;"><p class="quoteTag">Tag 1</p><p class="quoteTag">Tag 2</p></div></td></tr>
+              <tr><td class="quoteBody"><p class="quoteText">Loading...</p><br><div class="loader"></div><br></td></tr>
             </tbody>
           </table>
         </div>
@@ -106,23 +106,6 @@
         
                 function displayResult2(response) {
                     getSheet(response);
-                  /*let tableHead = "";
-                  let tableBody = "";
-        
-                  response.result.values.forEach((row, index) => {
-                    if (index === 0) {
-                      tableHead += "<tr>";
-                      row.forEach((val) => (tableHead += "<th>" + val + "</th>"));
-                      tableHead += "</tr>";
-                    } else {
-                      tableBody += "<tr>";
-                      row.forEach((val) => (tableBody += "<td>" + val + "</td>"));
-                      tableBody += "</tr>";
-                    }
-                  });
-        
-                  document.getElementById("table-head").innerHTML = tableHead;
-                  document.getElementById("table-body").innerHTML = tableBody;*/
                 }
         
                 function loadData() {

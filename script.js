@@ -3,8 +3,8 @@ var dropdown = "";
 var dropPos = [];
 var quotes;
 
-document.getElementById(blocker).style.width = screen.width;
-document.getElementById(blocker).style.height = screen.height;
+document.getElementById("blocker").style.width = screen.width;
+document.getElementById("blocker").style.height = screen.height;
 
 function newPage(id) {
   document.getElementById(page).style.display = "none";
@@ -54,7 +54,7 @@ window.onclick = function(event) {
   }
 }
 
-function signIn(on) {
+function signInPage(on) {
   if (on) {
     document.getElementById("blocker").style.display = "block";
     document.getElementById("signin").style.display = "block";
@@ -70,18 +70,36 @@ function getSheet(response) {
 }
 
 function generateQuotes() {
-  console.log(quotes);
+  //console.log(quotes);
   var temp = '';
+  //add quotes
   for (let i = 1; i < quotes.length; i++) {
-    temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2] + '</p>';
-    temp += '<br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
+    temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2];
+    if (quotes[i][4] != undefined & quotes[i][4] != "") {
+      console.log(quotes[i][4]);
+      if (quotes[i][3] == undefined | quotes[i][3] == "") {
+        temp += " " + quotes[i][4];
+      } else {
+        temp += "<br><br>" + quotes[i][3] + "<br>- " + quotes[i][4] + quotes[i][5];
+      }
+      if (quotes[i][7] != undefined & quotes[i][7] != "") {
+        if (quotes[i][6] == undefined | quotes[i][6] == "") {
+          temp += " " + quotes[i][7];
+        } else {
+          temp += "<br><br>" + quotes[i][6] + "<br>- " + quotes[i][7];
+        }
+      }
+    }
+
+    // add tags
+    temp += '</p><br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
     if (quotes[i][9] != undefined) {
       temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
       if (quotes[i][10] != undefined) {
         temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
       }
     }
-    temp += '</div></td></tr>';
+    temp += '<br></div></td></tr>';
   }
   document.getElementById("quoteRows").innerHTML = temp;
 }
