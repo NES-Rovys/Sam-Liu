@@ -258,7 +258,7 @@ body {
 }
 
 .quoteHead {
-    height: 100px;
+    height: 180px;
     border: 3px solid white;
 }
 
@@ -305,7 +305,11 @@ body {
   }
 
   .search {
-    height: 30px;
-    width: 100px;
-    
+    height: 60px;
+    width: 400px;
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    position: relative;
+    top: -40px;
   }

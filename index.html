@@ -75,7 +75,9 @@
           <p style="font-size: 100px;">SAM LIU IS LORD</p>
           <table class="quoteTab">
             <thead>
-              <th class="quoteHead"><textarea class="search" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Search</textarea></th>
+            <th class="quoteHead">
+              <textarea class="search" id="search" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue; generateQuotes()">Search</textarea>
+            </th>
             </thead>
             <tbody id="quoteRows">
               <tr><td class="quoteBody"><p class="quoteText">Loading...</p><br><div class="loader"></div><br></td></tr>

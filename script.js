@@ -72,11 +72,16 @@ function getSheet(response) {
 function generateQuotes() {
   //console.log(quotes);
   var temp = '';
+  var search = document.getElementById("search").value;
+  if (search == "Search") {
+    search = "";
+  }
+  search = search.toLowerCase();
   //add quotes
   for (let i = 1; i < quotes.length; i++) {
-    temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2];
+    if ((quotes[i][0] + quotes[i][3] + quotes[i][6]).toLowerCase().includes(search)) {
+      temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2];
     if (quotes[i][4] != undefined & quotes[i][4] != "") {
-      console.log(quotes[i][4]);
       if (quotes[i][3] == undefined | quotes[i][3] == "") {
         temp += " " + quotes[i][4];
       } else {
@@ -100,6 +105,7 @@ function generateQuotes() {
       }
     }
     temp += '<br></div></td></tr>';
+    }
   }
   document.getElementById("quoteRows").innerHTML = temp;
 }
