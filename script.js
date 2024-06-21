@@ -4,8 +4,10 @@ var dropPos = [];
 var quotes;
 var names = [];
 var nameCount = [];
+var nameOff = [];
 var tags = [];
 var tagCount = [];
+var tagOff = [];
 
 document.getElementById("blocker").style.width = screen.width;
 document.getElementById("blocker").style.height = screen.height;
@@ -125,9 +127,6 @@ function addToArray(quote) {
       applied[i] = quote[11].substring(i, i + 1);
       check[i] = false;
     }
-    for (let i = 0; i < applied.length; i++) {
-      console.log(quote[applied[i]]);
-    }
   }
   for (let j = 0; j < applied.length; j++) {
     for (let i = 0; i < names.length; i++) {
@@ -138,11 +137,12 @@ function addToArray(quote) {
     }
   }
   for (let i = 0; i < check.length; check++) {
-    if (!check[i]) {
+    if (!check[i] & !arrayCheck(quote[applied[i]], nameOff)) {
       nameCount[names.length] = 1;
-      names[names.length] = quote[1];
+      names[names.length] = quote[applied[i]];
     }
   }
+  
   if (quote[9] != undefined & quote[9] != "") {
     if (quote[10] != undefined & quote[10] != "") {
       check = [false, false, false];
@@ -165,11 +165,20 @@ function addToArray(quote) {
     }
   }
   for (let i = 0; i < check.length; check++) {
-    if (!check[i]) {
+    if (!check[i] & !arrayCheck(quote[i + 8], tagOff)) {
       tagCount[tags.length] = 1;
       tags[tags.length] = quote[i + 8];
     }
   }
-  //console.log(names, nameCount);
-  //console.log(tags, tagCount);
+  console.log(names, nameCount);
+  console.log(tags, tagCount);
+}
+
+function arrayCheck(item, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (item == array[i]) {
+      return true;
+    }
+  }
+  return false;
 }

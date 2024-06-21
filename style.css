@@ -326,3 +326,8 @@ body {
     margin-right: auto;
     justify-content: center;
   }
+
+  .searchTable {
+    border: 3px solid white;
+    border-collapse: collapse;
+  }
