@@ -8,6 +8,8 @@ var nameOff = [];
 var tags = [];
 var tagCount = [];
 var tagOff = [];
+var search = 2;
+var stopper = true;
 
 document.getElementById("blocker").style.width = screen.width;
 document.getElementById("blocker").style.height = screen.height;
@@ -107,9 +109,9 @@ function generateQuotes() {
   
       // add tags
       temp += '</p><br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
-      if (quotes[i][9] != undefined) {
+      if (quotes[i][9] != undefined & quotes[i][9] != "") {
         temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
-        if (quotes[i][10] != undefined) {
+        if (quotes[i][10] != undefined & quotes[i][4] != "") {
           temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
         }
       }
@@ -117,6 +119,7 @@ function generateQuotes() {
     }
   }
   document.getElementById("quoteRows").innerHTML = temp;
+  stopper = false;
 }
 
 function addToArray(quote) {
@@ -143,6 +146,7 @@ function addToArray(quote) {
     }
   }
   
+  check = [];
   if (quote[9] != undefined & quote[9] != "") {
     if (quote[10] != undefined & quote[10] != "") {
       check = [false, false, false];
@@ -170,8 +174,8 @@ function addToArray(quote) {
       tags[tags.length] = quote[i + 8];
     }
   }
-  console.log(names, nameCount);
-  console.log(tags, tagCount);
+  //console.log(names, nameCount);
+  //console.log(tags, tagCount);
 }
 
 function arrayCheck(item, array) {
@@ -181,4 +185,34 @@ function arrayCheck(item, array) {
     }
   }
   return false;
+}
+
+function searchFor(check) {
+  var temp = "";
+  var array = [];
+  if (check == 0) {
+    array = names;
+  } else {
+    array = tags;
+  }
+  if (!stopper) {
+    for (let i = 0; i < array.length; i++) {
+      if (i % 3 == 0) {
+        temp += "<tr>";
+      }
+      temp += "<td class='searchRows'><input type='checkbox' id='" + array[i] + "' name='" + array[i] + "' class='searchCheck'><label for='" + array[i] + "'>  " + array[i] + "</label></td>";
+      if (i % 3 == 0) {
+        temp += "</tr>";
+      }
+    }
+    document.getElementById("searchDiv").innerHTML = temp;
+
+    if (search == check) {
+      document.getElementById("searchDiv").style.display = "none";
+      search = 2;
+    } else {
+      document.getElementById("searchDiv").style.display = "block";
+      search = check;
+    }
+  }
 }

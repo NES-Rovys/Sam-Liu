@@ -77,14 +77,16 @@
             <thead>
             <th class="quoteHead">
               <textarea class="search" id="search" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue; generateQuotes()">Search</textarea>
-              <br><div style="display: flex;">
-                <button class="searchTags">Names</button>
-                <button class="searchTags">Tags</button>
+              <br><br><div style="display: flex;">
+                <button class="searchTags" onclick="searchFor(true)">Names</button>
+                <button class="searchTags" onclick="searchFor(false)">Tags</button>
+              </div><br>
+              <div class="searchDiv" id="searchDiv" style="display: none;">
+                <table class="searchTable">
+                  <tr><td class="searchRows"><input type="checkbox" id="test" name="test" class="searchCheck"><label for="test">   Test</label></td><td class="searchRows">yippee</td><td class="searchRows">wahoo</td></tr>
+                  <tr><td class="searchRows">help</td></tr>
+                </table><br>
               </div>
-              <table class="searchTable">
-                <tr><td class="searchTable">Please</td><td class="searchTable">yippee</td></tr>
-                <tr><td class="searchTable">help</td></tr>
-              </table>
             </th>
             </thead>
             <tbody id="quoteRows">
