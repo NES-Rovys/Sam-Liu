@@ -5,9 +5,13 @@ var quotes;
 var names = [];
 var nameCount = [];
 var nameOff = [];
+var nOnCount = 0;
 var tags = [];
 var tagCount = [];
 var tagOff = [];
+var tOnCount = 0;
+var permNames = [];
+var permTags = [];
 var search = 2;
 var stopper = true;
 
@@ -51,7 +55,6 @@ function goToPage(id) {
 }
 
 window.onclick = function(event) {
-  console.log(event.target);
   if (!event.target.matches('.arrowImage')) {
     for (let i = 0; i < document.querySelectorAll('.menu').length; i++) {
       if (document.querySelectorAll('.menu')[i].classList.contains('show')) {
@@ -83,7 +86,7 @@ function generateQuotes() {
   var search = document.getElementById("search").value;
   names = [];
   tags = [];
-  if (search == "Search") {
+  if (search == "Search" | stopper) {
     search = "";
   }
   search = search.toLowerCase();
@@ -119,63 +122,84 @@ function generateQuotes() {
     }
   }
   document.getElementById("quoteRows").innerHTML = temp;
-  stopper = false;
+  if (stopper) {
+    for (let i = 0; i < names.length; i++) {
+      nameOff[i] = true;
+    }
+    for (let i = 0; i < tags.length; i++) {
+      tagOff[i] = true;
+    }
+    permNames = names;
+    permTags = tags;
+    stopper = false;
+  }
 }
 
 function addToArray(quote) {
   var check = [false];
   var applied = [1];
-  if (quote[11] != undefined & quote[11] != "") {
-    for (let i = 0; i < quote[11].length; i++) {
-      applied[i] = quote[11].substring(i, i + 1);
-      check[i] = false;
-    }
+  var enter = true;
+
+  if (checkIfOff(quote, names, nameOff, nOnCount)) {
+    enter = false;
   }
-  for (let j = 0; j < applied.length; j++) {
-    for (let i = 0; i < names.length; i++) {
-      if (names[i] == quote[applied[j]]) {
-        nameCount[i]++;
-        check[j] = true;
+  if (checkIfOff(quote, tags, tagOff, tOnCount)) {
+    enter = false;
+  }
+
+  if (enter) {
+    if (quote[11] != undefined & quote[11] != "") {
+      for (let i = 0; i < quote[11].length; i++) {
+        applied[i] = quote[11].substring(i, i + 1);
+        check[i] = false;
       }
     }
-  }
-  for (let i = 0; i < check.length; check++) {
-    if (!check[i] & !arrayCheck(quote[applied[i]], nameOff)) {
-      nameCount[names.length] = 1;
-      names[names.length] = quote[applied[i]];
+    for (let j = 0; j < applied.length; j++) {
+      for (let i = 0; i < names.length; i++) {
+        if (names[i] == quote[applied[j]]) {
+          nameCount[i]++;
+          check[j] = true;
+        }
+      }
     }
-  }
-  
-  check = [];
-  if (quote[9] != undefined & quote[9] != "") {
-    if (quote[10] != undefined & quote[10] != "") {
-      check = [false, false, false];
+    for (let i = 0; i < check.length; check++) {
+      if (!check[i]) {
+        nameCount[names.length] = 1;
+        names[names.length] = quote[applied[i]];
+      }
+    }
+    
+    check = [];
+    if (quote[9] != undefined & quote[9] != "") {
+      if (quote[10] != undefined & quote[10] != "") {
+        check = [false, false, false];
+      } else {
+        check = [false, false];
+      }
     } else {
-      check = [false, false];
+      check = [false];
     }
-  } else {
-    check = [false];
-  }
-  for (let i = 0; i < tags.length; i++) {
-    if (tags[i] == quote[8]) {
-      tagCount[i]++;
-      check[0] = true;
-    } else if (tags[i] == quote[9]) {
-      tagCount[i]++;
-      check[1] = true;
-    } else if (tags[i] == quote[10]) {
-      tagCount[i]++;
-      check[2] = true;
+    for (let i = 0; i < tags.length; i++) {
+      if (tags[i] == quote[8]) {
+        tagCount[i]++;
+        check[0] = true;
+      } else if (tags[i] == quote[9]) {
+        tagCount[i]++;
+        check[1] = true;
+      } else if (tags[i] == quote[10]) {
+        tagCount[i]++;
+        check[2] = true;
+      }
     }
-  }
-  for (let i = 0; i < check.length; check++) {
-    if (!check[i] & !arrayCheck(quote[i + 8], tagOff)) {
-      tagCount[tags.length] = 1;
-      tags[tags.length] = quote[i + 8];
+    for (let i = 0; i < check.length; check++) {
+      if (!check[i]) {
+        tagCount[tags.length] = 1;
+        tags[tags.length] = quote[i + 8];
+      }
     }
+    //console.log(names, nameCount);
+    //console.log(tags, tagCount);
   }
-  //console.log(names, nameCount);
-  //console.log(tags, tagCount);
 }
 
 function arrayCheck(item, array) {
@@ -191,21 +215,24 @@ function searchFor(check) {
   var temp = "";
   var array = [];
   if (check == 0) {
-    array = names;
+    array = permNames;
   } else {
-    array = tags;
+    array = permTags;
   }
   if (!stopper) {
     for (let i = 0; i < array.length; i++) {
       if (i % 3 == 0) {
         temp += "<tr>";
       }
-      temp += "<td class='searchRows'><input type='checkbox' id='" + array[i] + "' name='" + array[i] + "' class='searchCheck'><label for='" + array[i] + "'>  " + array[i] + "</label></td>";
-      if (i % 3 == 0) {
-        temp += "</tr>";
+      temp += "<td class='searchRows'><input type='checkbox' id='" + array[i] + "' onclick='checkOn(id, " + check + ")' class='searchCheck'";
+      if ((!nameOff[i] & check == 0) | (!tagOff[i] & check == 1)) {
+        temp += " checked";
+      }
+      temp += "><label for='" + array[i] + "'>  " + array[i] + "</label></td>";
+      if (i % 3 == 3) {
       }
     }
-    document.getElementById("searchDiv").innerHTML = temp;
+    document.getElementById("searchTable").innerHTML = temp;
 
     if (search == check) {
       document.getElementById("searchDiv").style.display = "none";
@@ -215,4 +242,50 @@ function searchFor(check) {
       search = check;
     }
   }
+}
+
+function checkOn(id, which) {
+  if (which == 0) {
+    for (let i = 0; i < names.length; i++) {
+      if (id == names[i]) {
+        nameOff[i] = !nameOff[i];
+        if (nameOff[i]) {
+          nOnCount++;
+        } else {
+          nOnCount--;
+        }
+      }
+    }
+  } else if (which == 1) {
+    for (let i = 0; i < tags.length; i++) {
+      if (id == tags[i]) {
+        tagOff[i] = !tagOff[i];
+        if (tagOff[i]) {
+          tOnCount++;
+        } else {
+          tOnCount--;
+        }
+      }
+    }
+  }
+  generateQuotes();
+}
+
+function checkIfOff(item, array, check, counter) {
+  if (counter == 0) {
+    return false;
+  }
+  for (let i = 0; i < item.length; i++) {
+    for (let j = 0; j < array.length; j++) {
+      if (item[i] == array[j]) {
+        if (!check[j]) {
+          counter--;
+          if (counter == 0) {
+            return false;
+          }
+        }
+      }
+    }
+  }
+  return true;
 }
