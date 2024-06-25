@@ -355,6 +355,7 @@ body {
     border: 3px solid white;
     width: 25%;
     height: 40px;
+    font-size: 13px;
   }
 
   .searchCheck {

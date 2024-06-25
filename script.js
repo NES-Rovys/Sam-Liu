@@ -84,8 +84,12 @@ function generateQuotes() {
   //console.log(quotes);
   var temp = '';
   var search = document.getElementById("search").value;
-  names = [];
-  tags = [];
+  for (let i = 0; i < nameCount.length; i++) {
+    nameCount[i] = 0;
+  }
+  for (let i = 0; i < tagCount.length; i++) {
+    tagCount[i] = 0;
+  }
   if (search == "Search" | stopper) {
     search = "";
   }
@@ -114,7 +118,7 @@ function generateQuotes() {
         temp += '</p><br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
         if (quotes[i][9] != undefined & quotes[i][9] != "") {
           temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
-          if (quotes[i][10] != undefined & quotes[i][4] != "") {
+          if (quotes[i][10] != undefined & quotes[i][10] != "") {
             temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
           }
         }
@@ -138,7 +142,7 @@ function generateQuotes() {
 
 function addToArray(quote) {
   var check = [false];
-  var applied = [1];
+  var applied = [1, 4, 7];
   var enter = true;
 
   if (checkIfOff(quote, permNames, nameOff, nOnCount)) {
@@ -150,7 +154,6 @@ function addToArray(quote) {
   if (enter) {
     if (quote[11] != undefined & quote[11] != "") {
       for (let i = 0; i < quote[11].length; i++) {
-        applied[i] = quote[11].substring(i, i + 1);
         check[i] = false;
       }
     }
@@ -191,13 +194,13 @@ function addToArray(quote) {
         check[2] = true;
       }
     }
-    for (let i = 0; i < check.length; check++) {
+    for (let i = 0; i < check.length; i++) {
       if (!check[i]) {
         tagCount[tags.length] = 1;
         tags[tags.length] = quote[i + 8];
       }
     }
-    //console.log(names, nameCount);
+    console.log(names, nameCount);
     //console.log(tags, tagCount);
     return true;
   }
@@ -213,16 +216,22 @@ function arrayCheck(item, array) {
   return false;
 }
 
-function searchFor(check) {
+function searchFor(check, swap) {
   var temp = "";
   var array = [];
+  var count = [];
   if (check == 0) {
     array = permNames;
+    count = nameCount;
   } else {
     array = permTags;
+    count = tagCount;
   }
   if (!stopper) {
     for (let i = 0; i < array.length; i++) {
+      if (count[i] == undefined | count[i] == NaN) {
+        count[i] = 0;
+      }
       if (i % 3 == 0) {
         temp += "<tr>";
       }
@@ -230,16 +239,16 @@ function searchFor(check) {
       if ((!nameOff[i] & check == 0) | (!tagOff[i] & check == 1)) {
         temp += " checked";
       }
-      temp += "><label for='" + array[i] + "'>  " + array[i] + "</label></td>";
+      temp += "><label for='" + array[i] + "'>  " + array[i] + " (" + count[i] + ")</label></td>";
       if (i % 3 == 3) {
       }
     }
     document.getElementById("searchTable").innerHTML = temp;
 
-    if (search == check) {
+    if (search == check & swap) {
       document.getElementById("searchDiv").style.display = "none";
       search = 2;
-    } else {
+    } else if (swap) {
       document.getElementById("searchDiv").style.display = "block";
       search = check;
     }
@@ -271,17 +280,21 @@ function checkOn(id, which) {
     }
   }
   generateQuotes();
+  searchFor(which, false);
+  searchFor(which, false)
 }
 
 function checkIfOff(item, array, check, counter) {
+  var saved = [];
   if (counter == 0) {
     return false;
   }
   for (let i = 0; i < item.length; i++) {
     for (let j = 0; j < array.length; j++) {
-      if (item[i] == array[j]) {
+      if (item[i] == array[j] & !arrayCheck(array[j], saved)) {
         if (!check[j]) {
           counter--;
+          saved[saved.length] = array[j];
           if (counter == 0) {
             return false;
           }
