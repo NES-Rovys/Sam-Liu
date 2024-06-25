@@ -93,32 +93,33 @@ function generateQuotes() {
   //add quotes
   for (let i = 1; i < quotes.length; i++) {
     if ((quotes[i][0] + quotes[i][3] + quotes[i][6]).toLowerCase().includes(search)) {
-      addToArray(quotes[i]);
-      temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2];
-      if (quotes[i][4] != undefined & quotes[i][4] != "") {
-        if (quotes[i][3] == undefined | quotes[i][3] == "") {
-          temp += " " + quotes[i][4];
-        } else {
-          temp += "<br><br>" + quotes[i][3] + "<br>- " + quotes[i][4] + quotes[i][5];
-        }
-        if (quotes[i][7] != undefined & quotes[i][7] != "") {
-          if (quotes[i][6] == undefined | quotes[i][6] == "") {
-            temp += " " + quotes[i][7];
+      if (addToArray(quotes[i])) {
+        temp += '<tr><td class="quoteBody"><p class="quoteText">' + quotes[i][0] + "<br>- " + quotes[i][1] + quotes[i][2];
+        if (quotes[i][4] != undefined & quotes[i][4] != "") {
+          if (quotes[i][3] == undefined | quotes[i][3] == "") {
+            temp += " " + quotes[i][4];
           } else {
-            temp += "<br><br>" + quotes[i][6] + "<br>- " + quotes[i][7];
+            temp += "<br><br>" + quotes[i][3] + "<br>- " + quotes[i][4] + quotes[i][5];
+          }
+          if (quotes[i][7] != undefined & quotes[i][7] != "") {
+            if (quotes[i][6] == undefined | quotes[i][6] == "") {
+              temp += " " + quotes[i][7];
+            } else {
+              temp += "<br><br>" + quotes[i][6] + "<br>- " + quotes[i][7];
+            }
           }
         }
-      }
-  
-      // add tags
-      temp += '</p><br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
-      if (quotes[i][9] != undefined & quotes[i][9] != "") {
-        temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
-        if (quotes[i][10] != undefined & quotes[i][4] != "") {
-          temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
+    
+        // add tags
+        temp += '</p><br><div style="display: flex;"><p class="quoteTag">' + quotes[i][8] + '</p>';
+        if (quotes[i][9] != undefined & quotes[i][9] != "") {
+          temp += '<p class="quoteTag">' + quotes[i][9] + '</p>';
+          if (quotes[i][10] != undefined & quotes[i][4] != "") {
+            temp += '<p class="quoteTag">' + quotes[i][10] + '</p>'; 
+          }
         }
+        temp += '<br></div></td></tr>';
       }
-      temp += '<br></div></td></tr>';
     }
   }
   document.getElementById("quoteRows").innerHTML = temp;
@@ -140,13 +141,12 @@ function addToArray(quote) {
   var applied = [1];
   var enter = true;
 
-  if (checkIfOff(quote, names, nameOff, nOnCount)) {
+  if (checkIfOff(quote, permNames, nameOff, nOnCount)) {
     enter = false;
   }
-  if (checkIfOff(quote, tags, tagOff, tOnCount)) {
+  if (checkIfOff(quote, permTags, tagOff, tOnCount)) {
     enter = false;
   }
-
   if (enter) {
     if (quote[11] != undefined & quote[11] != "") {
       for (let i = 0; i < quote[11].length; i++) {
@@ -199,7 +199,9 @@ function addToArray(quote) {
     }
     //console.log(names, nameCount);
     //console.log(tags, tagCount);
+    return true;
   }
+  return false;
 }
 
 function arrayCheck(item, array) {
@@ -246,24 +248,24 @@ function searchFor(check) {
 
 function checkOn(id, which) {
   if (which == 0) {
-    for (let i = 0; i < names.length; i++) {
-      if (id == names[i]) {
+    for (let i = 0; i < permNames.length; i++) {
+      if (id == permNames[i]) {
         nameOff[i] = !nameOff[i];
         if (nameOff[i]) {
-          nOnCount++;
-        } else {
           nOnCount--;
+        } else {
+          nOnCount++;
         }
       }
     }
   } else if (which == 1) {
-    for (let i = 0; i < tags.length; i++) {
-      if (id == tags[i]) {
+    for (let i = 0; i < permTags.length; i++) {
+      if (id == permTags[i]) {
         tagOff[i] = !tagOff[i];
         if (tagOff[i]) {
-          tOnCount++;
-        } else {
           tOnCount--;
+        } else {
+          tOnCount++;
         }
       }
     }
