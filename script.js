@@ -14,6 +14,11 @@ var permNames = [];
 var permTags = [];
 var search = 2;
 var stopper = true;
+var themeId = 1;
+var themes = [["#0b0a4f", "#072f85", "#096db5", "white"], ["black", "gray", "white", "black"]];
+var theObj = [["body", ".signin", ".searchTags", ".searchDiv"], [".tabs", ".reviewButton", ".menu", ".quoteTab", ".searchTable"], [".doco", ".quoteTag"], [".docHead", ".docText", ".reviewHead", ".reviewButton", ".reviewTitle", ".reviewDesc", ".reviewName", ".gameTitle", ".gameLink"]];
+
+changeTheme(themeId);
 
 document.getElementById("blocker").style.width = screen.width;
 document.getElementById("blocker").style.height = screen.height;
@@ -137,6 +142,13 @@ function generateQuotes() {
     permNames = names;
     permTags = tags;
     stopper = false;
+  }
+
+  var cssClass = document.querySelectorAll(".quoteTag");
+  for (let i = 0; i < cssClass.length; i++) {
+    cssClass[i].style.backgroundColor = themes[themeId][2];
+    cssClass[i].style.color = themes[themeId][3];
+    cssClass[i].style.border = "2px solid " + themes[themeId][3];
   }
 }
 
@@ -303,4 +315,21 @@ function checkIfOff(item, array, check, counter) {
     }
   }
   return true;
+}
+
+function changeTheme(id) {
+  var change = themes[id];
+  var cssClass = document.querySelectorAll("body");
+  for (let i = 0; i < change.length; i++) {
+    for (let j = 0; j < theObj[i].length; j++) {
+      cssClass = document.querySelectorAll(theObj[i][j]);
+      for (let n = 0; n < cssClass.length; n++) {
+        if (i == 3) {
+          cssClass[n].style.color = change[i];
+        } else {
+          cssClass[n].style.backgroundColor = change[i];
+        }
+      }
+    }
+  }
 }
