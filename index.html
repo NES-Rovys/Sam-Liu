@@ -16,12 +16,12 @@
             <textarea class="enter" id="username" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Username</textarea><br><br>
             <textarea class="enter" id="password" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue">Password</textarea><br>
             <div style="display: flex;"><button class="signButton" style="margin-right: 40px; margin-left: auto;">Log In</button><button class="signButton">Sign Up</button></div><br>
-            <p class="error">Your password or username is incorrect</p>
+            <p class="error" style="display: none;">Your password or username is incorrect</p>
         </div>
         <div class="blocker" id="blocker"></div>
         <div class="tabs">
             <div class="line"></div>
-            <img src="images/blue.png" class="logo">
+            <button class="logoButton" onclick="changeId()"><img src="images/blue.png" class="logo" id="logo"></button>
             <a class="tabButton" onclick="newPage('videos')" href="#">VIDEOS</a>
             <button class="arrow" id="dropVid" onclick="showMenu(id)"><img src="images/arrow.png" class="arrowImage"></button>
             <div id="downVid" class="menu">

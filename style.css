@@ -362,3 +362,8 @@ body {
     width: 15px;
     height: 15px;
   }
+
+  .logoButton {
+    border: none;
+    background-color: transparent;
+  }

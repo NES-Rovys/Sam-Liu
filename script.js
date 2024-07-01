@@ -14,9 +14,16 @@ var permNames = [];
 var permTags = [];
 var search = 2;
 var stopper = true;
-var themeId = 1;
-var themes = [["#0b0a4f", "#072f85", "#096db5", "white"], ["black", "gray", "white", "black"]];
+var themeId = 0;
+var themes = [["#0b0a4f", "#072f85", "#096db5", "white"], ["#220278", "#8831ad", "#de5fd5", "black"], ["#220278", "#8831ad", "#de5fd5", "white"], ["#6b0202", "#c23917", "#f0782e", "black"], ["#f5f2f0", "#4dc48c", "#1c989c", "white"]];
 var theObj = [["body", ".signin", ".searchTags", ".searchDiv"], [".tabs", ".reviewButton", ".menu", ".quoteTab", ".searchTable"], [".doco", ".quoteTag"], [".docHead", ".docText", ".reviewHead", ".reviewButton", ".reviewTitle", ".reviewDesc", ".reviewName", ".gameTitle", ".gameLink"]];
+var logo = ["blue.png", "multiblack.png", "multiwhite.png", "red.png", "white.png"];
+
+if (localStorage.currentId != undefined) {
+  themeId = localStorage.currentId;
+} else {
+  localStorage.currentId = 0;
+}
 
 changeTheme(themeId);
 
@@ -212,7 +219,7 @@ function addToArray(quote) {
         tags[tags.length] = quote[i + 8];
       }
     }
-    console.log(names, nameCount);
+    //console.log(names, nameCount);
     //console.log(tags, tagCount);
     return true;
   }
@@ -332,4 +339,21 @@ function changeTheme(id) {
       }
     }
   }
+  cssClass = document.querySelectorAll(".quoteTag");
+  for (let i = 0; i < cssClass.length; i++) {
+    cssClass[i].style.backgroundColor = themes[themeId][2];
+    cssClass[i].style.color = themes[themeId][3];
+    cssClass[i].style.border = "2px solid " + themes[themeId][3];
+  }
+  document.getElementById("logo").src = "images/" + logo[id];
+  console.log(document.getElementById("logo").innerHTML);
+}
+
+function changeId() {
+  themeId++;
+  if (themeId > 4) {
+    themeId = 0;
+  }
+  localStorage.currentId = themeId;
+  changeTheme(themeId);
 }
